@@ -1,0 +1,52 @@
+class Player:
+    def __init__(self, playerName, playedCountry, playerAge, countryFrom):
+        self.playerName = playerName
+        self.playedCountry = playedCountry
+        self.playerAge = playerAge
+        self.countryFrom = countryFrom
+
+def countPlayers(playerList, nameCountry):
+    count = 0
+    for i in playerList:
+        if i.countryFrom == nameCountry:
+            count = count+1
+    return count
+
+    
+def getPlayerPlayedForMaxCountry(playerList):
+    m = 0
+    index = 0
+    saveIndex = 0
+    for i in playerList:
+        count = 0
+        for j in i.playedCountry:
+            count = count+1
+        if count > m:
+            m = count
+            saveIndex = index
+        index = index+1
+    return playerList[saveIndex].playerName
+            
+               
+
+if __name__ == "__main__":
+    numPlay = int(input())
+    player_list = []
+    
+    for i in range(numPlay):
+        name = input()
+        country = []
+        countCountry = int(input())
+        for j in range(countCountry):
+            country.append(input())
+        age = int(input())
+        countryFrom = input()
+        
+        player_list.append(Player(name, country, age, countryFrom))
+    
+    country_input = input()
+    x = countPlayers(player_list, country_input)
+    print(x)
+    
+    name = getPlayerPlayedForMaxCountry(player_list)
+    print(name)
